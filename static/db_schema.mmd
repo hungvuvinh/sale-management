@@ -1,0 +1,8 @@
+```mermaid
+erDiagram
+  users ||--o{ user_roles : has
+  stores ||--o{ products : sells
+  variants ||--o{ fifo_lots : has
+  orders ||--o{ order_items : contains
+  orders ||--o{ order_audit_logs : audited
+```

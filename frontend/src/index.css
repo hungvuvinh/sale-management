@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #17212b;
+  --ink-muted: #66737d;
+  --paper: #f3f5f2;
+  --surface: #ffffff;
+  --line: #dfe5e1;
+  --teal: #0d766f;
+  --teal-soft: #e2f3ef;
+  --amber: #b87816;
+  --amber-soft: #fff3da;
+  --coral: #ca5b4f;
+  --coral-soft: #fce8e4;
+  --blue: #3b6f9f;
+  --blue-soft: #e9f1f8;
+  font-family: 'DM Sans', 'Segoe UI', sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+@layer base {
+  body {
+    @apply min-h-screen antialiased;
+    background: var(--paper);
+  }
+
+  button,
+  input {
+    font: inherit;
+  }
+}

@@ -1,0 +1,92 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: sale_mgmt_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-sale_management}
+      POSTGRES_USER: ${POSTGRES_USER:-visssoft}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-visssoft_dev_2026}
+    ports:
+      - '${POSTGRES_PORT:-5432}:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-visssoft} -d ${POSTGRES_DB:-sale_management}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - sale_net
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: sale_mgmt_redis
+    restart: unless-stopped
+    command: >
+      redis-server
+      --requirepass ${REDIS_PASSWORD:-redis_dev_2026}
+      --maxmemory 256mb
+      --maxmemory-policy allkeys-lru
+      --save 60 1
+    ports:
+      - '${REDIS_PORT:-6379}:6379'
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ['CMD', 'redis-cli', '-a', '${REDIS_PASSWORD:-redis_dev_2026}', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - sale_net
+
+  postgrest:
+    image: postgrest/postgrest:v12.2.0
+    container_name: sale_mgmt_postgrest
+    restart: unless-stopped
+    environment:
+      PGRST_DB_URI: postgres://${POSTGRES_USER:-visssoft}:${POSTGRES_PASSWORD:-visssoft_dev_2026}@postgres:5432/${POSTGRES_DB:-sale_management}
+      PGRST_DB_SCHEMA: public
+      PGRST_DB_ANON_ROLE: ${POSTGRES_USER:-visssoft}
+      PGRST_JWT_SECRET: ${JWT_SECRET:-your_super_secret_jwt_key_change_in_production_2026}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - sale_net
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sale_mgmt_backend
+    restart: unless-stopped
+    ports:
+      - '${BACKEND_PORT:-5000}:5000'
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=${POSTGRES_DB:-sale_management};Username=${POSTGRES_USER:-visssoft};Password=${POSTGRES_PASSWORD:-visssoft_dev_2026}
+      - Redis__ConnectionString=redis:6379,password=${REDIS_PASSWORD:-redis_dev_2026}
+      - Jwt__Secret=${JWT_SECRET:-your_super_secret_jwt_key_change_in_production_2026}
+      - PostgRest__BaseUrl=http://postgrest:3000
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      postgrest:
+        condition: service_started
+    networks:
+      - sale_net
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  sale_net:
+    driver: bridge

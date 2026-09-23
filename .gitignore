@@ -1,0 +1,61 @@
+# Environment / editor
+.venv/
+.venv/**
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/
+.vscode/**
+.agent/
+.agents/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*.sublime-workspace
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Node / frontend build artifacts
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+frontend/.vite/
+coverage/
+
+# .NET build artifacts
+backend/**/bin/
+backend/**/obj/
+backend/**/Debug/
+backend/**/Release/
+backend/**/*.user
+backend/**/*.suo
+backend/**/*.cache
+
+# Python cache
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# OS files
+._*
+
+# Misc generated output
+build/
+out/
+*.tmp
+*.temp
+
+# Docker local overrides
+compose.override.yml

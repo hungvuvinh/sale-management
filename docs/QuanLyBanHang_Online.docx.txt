@@ -1,0 +1,1025 @@
+﻿CÔNG TY TNHH WEBKYNANG VIỆT NAM
+Trụ sở chính: Tầng 6, Tòa nhà Sannam, 78 Duy Tân, Cầu Giấy, Hà Nội
+
+
+PHỤ LỤC 01
+TÍNH NĂNG CỦA HỆ THỐNG QUẢN TRỊ
+
+
+TÓM TẮT NỘI DUNG
+	NHÓM
+	GHI CHÚ
+	Sale (Product, Sale, CRM, Order, Marketing)
+	Web-app
+	
+
+	Delivery
+	Web-app
+	
+
+	Warehouse
+	Web-app
+	
+
+	Reporting & system
+	Web-app
+	
+
+	Other service
+	Web-app
+	
+
+	Website
+	Website
+	
+
+	Shipper
+	Mobile-app
+	
+
+	Hệ thống chat
+	Website
+	
+
+	HRM
+	Web-app
+	Có 1 số tính năng của module HRM được thiết kế trên Mobile-app
+	
+
+	
+
+	
+
+	Lưu ý: Mobile-app sẽ gồm 1 phần tính năng của 1 số module khác nhau.
+
+
+
+
+
+
+
+
+
+
+
+
+1. CHI TIẾT TÍNH NĂNG CÁC MODULE CỦA WEB-APP
+
+
+STT
+	MODULE SALE (PRODUCT, SALE, CRM, ORDER, MARKETING)
+	1. 	Quản lý sản phẩm 
+	Tạo mới sản phẩm: Sản phẩm loại variable, có thể setting nhiều giá với nhiều nhà cung cấp khác nhau và status của giá (vd clearance sale), setting cập nhật giá tự động hoặc không. Giá tự động có thể có từ 1 đến 5 mức (stage 1 to 5) giá được cài sẵn và tự động áp dụng dựa theo:
++ % lượng hàng còn lại có thể bán và % này có thể thay đổi linh hoạt theo cài đặt của người dùng. Mức giá này trong hầu hết các trường hợp thì sẽ được áp dụng và thay đổi chung cho tất cả các variations của một sản phẩm, tuy nhiên có thể chọn để tách một hay vài variation riêng ra áp dụng theo quy tắc khác (% khác hoặc thời gian hàng tồn khác).
+% Hàng còn lại có thể bán = Hàng còn lại có thể bán hiện tại/ (tổng lượng hàng có thể bán tại thời điểm gần đây nhất mà hàng về kho)
+Tổng lượng hàng có thể bán tại thời điểm gần đây nhất mà hàng về kho = Tổng số lượng hàng về kho tại thời điểm đó + Số lượng hàng trước đó còn lại có thể bán (đã trừ đi phần pre-order trước đó)
++ Dựa theo thời gian hàng có thể bán đã tồn trong kho (thời gian này được cài đặt tùy theo từng sản phẩm và variations của sp)
+Vd: Sản phẩm A đã giữ mức giá stage 1 trong thời gian 2 tháng rồi mà lượng hàng tiêu thụ vẫn chưa đủ điều kiện để sang stage 2 => hệ thống sẽ tự nhảy sang stage 2 sau 2 tháng (cài đặt được số ngày hệ thống sẽ tự nhảy cho từng sp).
+Ngược lại, nếu sản phẩm A đang ở mức giá stage 2 nhưng % hàng còn lại có thể bán giảm quá nhanh (vì bán nhiều), dưới 1 tháng mà đã đủ điều kiện để chuyển sang stage 3 => hệ thống tự giữ mức giá stage 2 cho sp A cho đến khi đạt đủ điều kiện về thời gian (vd là 1 tháng) sau đó mới tự động chuyển sang giá stage 3
+
+
+Thông tin 1 sản phẩm bao gồm: 
++ Tên 
++ Hình ảnh
++ Giá (stage 1, stage 2, stage 2, VIP customer price, special price 1, special price 2)
++ Stage hiện tại đang áp dụng, status của stage hiện tại (VD: Stage 3 – “clearance sale”)
++ Variants (SKU, 5 Prices, Automatic On/Off) 
++ Mô Tả
++ Shop
++ Quantity (số lượng bán trong đơn này; số lượng hàng còn lại có thể bán. Lưu ý: Số lượng hàng còn lại có thể bán cần hiện ngay bên cạnh trên sp để người bán biết có nên bán hay không và bán theo loại gì Order now or Pre-order)
++ Type, size, side, material…
++ Một số thông số khác có thể bổ sung
+	Giao diện thiết kế dạng bảng, hiển thị theo số lượng linh động, áp dụng kỹ thuật phân trang tối ưu tốc độ tải dữ liệu.
+	Bộ lọc thông minh cho một hoặc một nhóm sản phẩm theo một hoặc một nhóm các tiêu chí cùng lúc:
++ Toàn bộ các tiêu chí variants của sp (loại, cỡ, side, nguyên liệu, màu sắc…), giá (lower than, greater than, in between, equal to …), tình trạng hàng hiện thời có hay không có, stock available volume, time stock arriving,  shop, today, yesterday. VD:
+Lọc tất cả các giường cỡ double, bằng vải, có hàng về trong vòng 1 tháng, và có giá từ $200 đến $250 
+Lọc và đưa ra gợi ý các set bao gồm (Giường + Đệm + Sofa + Bàn ăn):
++ Giường và đệm cỡ double
++ Giường gỗ
++ Đệm có độm mềm medium
++ Sofa có tính tăng electric recliner, giá tiền không quá $1000
++ bàn ăn có 6 ghế đi kèm
++ Toàn bộ sp phải có hàng về trong vòng 1 tháng
++ Tổng số tiền của cả set không quá $3000
+	Tối ưu công cụ tìm kiếm, thời gian tìm kiếm (0.2s đến 2s) với 5.000 sản phẩm, vận hành VPS (Cloud)
+	Thể hiện tổng quát và chi tiết được sản phẩm tại shop:
++ Số lượng tổng 
++ Tồn kho âm hoặc thấp sẽ được thể hiện bằng màu sắc.
++ Số lượng hàng có hiện giờ
++ Số lượng hàng sẽ về trong thời gian tới (tìm kiếm theo quãng thời gian tùy chọn từ 1 ngày đến 365 ngày)
+	Có thể tạo sản phẩm bằng file Excel theo mẫu đơn giản.
+	Xuất file Excel theo mẫu đơn giản.
+	2. 	Bán hàng
+	Bán hàng tại cửa hàng: Tạo nhiều hoá đơn cùng lúc, tìm kiếm sản phẩm theo thời gian tối ưu nhất (0.2s đến 2s), giao diện tối ưu phần UI/UX theo các phần mềm phổ biến, doanh nghiệp kiểm tra.
+Hiện thị lượng sp còn lại có thể bán (số âm hay dương, nếu âm thì bao lâu nữa sẽ về và về bao nhiêu. Dựa vào thời gian giao hàng cho khách được khách book => hiển thị hàng có hay không trong thời gian đó để quyết định book giao hàng hay không)
+	Tạo khách hàng và địa chỉ giao hàng: 
++ Tìm kiếm khách hàng 
++ Thanh tìm kiếm thông minh cho phép tạo khi tìm kiếm 
++ Tìm kiếm địa chỉ giao hàng tích hợp Google Maps (cho phép tìm kiếm địa chỉ như Google Map)
+	Hình thức thanh toán: 
++ Tiền mặt: Hệ thống gợi ý tiền thừa để nhân viên tránh nhầm lẫn khi bán hàng.
++ Thẻ ngân hàng: Hệ thống chỉ thống kê khi nhân viên chọn thanh toán thẻ ngân hàng, doanh nghiệp cài đặt các thẻ ngân hàng được liên kết.
++ Mastercard, American Express
++ Paypal, Visa
+	Khuyến mãi và voucher: 
++ Hiển thị giá hiện tại của sp và cho phép điền giá mới (special once off discount price for customer) và hiển thị % discount tương ứng. Hoặc ngược lại cho phép điền % discount cho từng sp hoặc tổng đơn hàng và hiển thị giá mới của sp sau khi discount.
+Cho phép áp dụng % discount hoặc số tiền cụ thể cho tổng đơn hàng.
++ Áp dụng quà tặng dưới hình thức Voucher.
++ Áp dụng chương trình khuyến mãi đang khả dụng.
+	Linh động điều chỉnh giá bán ở dưới hệ thống, doanh nghiệp có thể điều chỉnh công thức tính giá cho toàn bộ sản phẩm.
+	Các hành động bán hàng luôn được ghi lại lịch sử thao tác.
+	Lịch sử bán hàng: Nhân viên chỉ xem được lịch sử bán hàng của họ trong ngày hôm đó. Sale leader hoặc manager sẽ xem được nhiều, cụ thể hơn.  
+	Đặt đơn dưới 2 hình thức:
++ Order Now: Đơn hàng được đưa vào hệ thống trừ thẳng vào stock available và xử lí đưa cho khách hàng.
++ Pre-Order: Hệ thống sẽ kiểm tra stock available và các cont hàng sắp tới để xác định bán hoặc không.
++ Liên kết bảng booking delivery. Khi tạo hóa đơn bán hàng, có phần delivery booking, khi ấn vào sẽ có bảng lịch sổ ra liệt kê các ngày và hiển thị đơn giản tổng quát cho biết nhanh số lượng delivery đã book trong từng ngày, có hay không special order (ví dụ như lắp sản phẩm, mang sản phẩm lên tầng…). Nếu tiếp tục ấn sẽ show chi tiết từng booking trong từng ngày, các special order cụ thể là gì và Google map pins cho các delivery này…
+	Hoàn tác hoặc huỷ hàng: Thao tác này được doanh nghiệp cài đặt chỉ được thực thi trong 1 thời gian cho phép sau khi hoàn thành đơn hàng.
+	3. 	Quản lý Đơn hàng
+	Tạo đơn hàng: Trường hợp này dành cho việc tạo đơn hàng từ phía quản lí để giải quyết bài toán đơn huỷ, trả, thay đổi hoặc nhầm lẫn về đơn hàng.
+	Xem danh sách đơn hàng được trình bày dạng bảng bao gồm đầy đủ các thông số:
++ Mã đơn 
++ Ngày tạo, 
++ Chi nhánh 
++ Danh sách sản phẩm (Tên, sku, giá cả, variant option, price, discount, final_price)
++ Chương trình khuyến mãi áp dụng (Nếu có)
++ Voucher áp dụng (Nếu có)
++ Thông tin khách hàng (Tên, số điện thoại địa chỉ, email, thành phố, quận, huyện, số nhà, mã bưu điện, mã thành phố, ...)
++ Thông tin nhân viên (Tên, số điện thoại, mã nhân viên)
++ Trạng thái (Đang tiến hành, đang vận chuyển, đã giao, huỷ, tạm hoãn)
++ Tổng tiền 
++ Giảm giá 
++ Thuế
++ Thành tiền
+	Chỉnh sửa thông tin đơn hàng: Chức năng này được phân quyền, chỉ dành cho cửa hàng trưởng hoặc Admin.
+	Hủy đơn hàng
+	Xem chi tiết đơn hàng
+	Kiểm tra đơn hàng theo loại (Order, Pre-Order)
+	Tìm kiếm đơn hàng theo tên khách hàng, địa chỉ, số điện thoại, mã đơn, lọc theo ngày, tháng, năm và theo đơn vị vận chuyển.
+	Công cụ lọc đơn hàng theo từng trạng thái (Draft, complete, shipping, cancel, pending)
+	Nhập file excel đơn hàng: Trường hợp doanh nghiệp muốn chỉnh tay trên Excel và nhập lại vào hệ thống hoặc doanh nghiệp muốn truy xuất dữ liệu trên phần mềm cũ để nhập vào hệ thống mới.
+	Xuất file excel đơn hàng: Phục vụ chủ yếu cho kế toán thống kê.
+	4. 	Quản lý khách hàng
+	Tạo mới khách hàng: Các thông số khách hàng đã nói ở trên.
+Chức năng VIP customer:
+Bật tắt chức năng VIP customer cho toàn bộ khách hàng hoặc cho từng khách riêng biệt.
+* Điều kiện để thành VIP customer: Tích điểm ($1/1 point) hoặc được chọn thành VIP bởi admin
+* Khi khách đủ điều kiện VIP: Email báo khách theo mẫu sẵn; Thông báo cho admin biết (phần Marketing module) để có chính sách chăm sóc tiếp theo. Hỗ trợ tạo thẻ VIP để gửi khách. Hỗ trợ kiểm tra khách hàng có phải VIP hay khách thường. Hỗ trợ tạo tk VIP cho khách đẻ log in trên website. 
+* Quyền lợi của VIP customer (có thể setup tùy chọn tự động apply hoặc được chọn cụ thể bởi admin, chỉ luôn được 1 ưu đãi một lúc tránh trường hợp áp dụng chồng chéo nhiều sale trên 1 sản phẩm): 
++ Trong phần tạo mới sản phẩm, sẽ có khai báo giá stage 1, stage 2, stage 3… và có cả khai báo giá VIP customer. Nếu có khai báo giá VIP thì sẽ luôn áp dụng giá này, nếu không khai báo thì:
+* + Luôn được hưởng giá ưu đãi sớm hơn một stage (vd giá hiện giờ của sp là stage 1 thì được hưởng giá stage 2; giá hiện giờ của sp là stage 2 thì được hưởng giá stage 3)
++ Được hưởng các sale thông thường khác đang diễn ra (tuy nhiên chỉ áp dụng 1 sale một lúc, tự động apply sale giảm giá nhiều hơn cho khách)
+	Xem lịch sử mua hàng: Truy vấn lại các hoá đơn mua hàng của khách hàng 
+	Xem chi tiết khách hàng: Thể hiện tổng quát ngày tạo và người tạo khách hàng này, số lần mua hàng của họ.
+	Chỉnh sửa thông tin
+	Xóa khách hàng 
+	Xem và điều chỉnh công nợ: Chức năng này phục vụ cho việc báo cáo chi phí, thống kê doanh thu lợi nhuận.
+	Công lọc, tìm kiếm khách hàng theo mã khách hàng, lọc theo mã bill.
+	Xem lịch sử giao dịch thanh toán
+	Công cụ lọc, tìm kiếm thông minh theo mã, ngày, loại, hình thức giao dịch, mã, tên, số điện thoại khách hàng.
+	Xuất file excel danh sách lịch sử giao dịch thanh toán
+Xuất file excel thông tin sđt, địa chỉ, email… toàn bộ khách hàng hoặc một nhóm khách hàng được lựa chọn theo tiêu chí (VD nhóm mua nhiều nhất, nhóm khách gần cửa hàng trong phạm vi 30km, nhóm khách đến từ qc Google, qc Facebook …). File này để phục vụ cho Marketing tiếp cận khách hàng đã mua hàng theo các kênh khác nhau.
+	5. 	Quản lý chi nhánh (Cửa hàng)
+Quản lý cùng lúc nhiều shop và nhiều warehouse. Khi cài đặt sẽ chọn warehouse nào liên kết với shop nào, từ đó tự động áp dụng mức giá khác nhau cho từng shop theo tình trạng hàng của warehouse liên kết với shop đó. Tương tự, trên website, khi người dùng vào website sẽ được hỏi nhập mã vùng và sau đó tự động đưa người dùng về shop gần nhất, sau đó sẽ hiển thị giá của shop đó cho người dùng. Tham khảo thêm tại website này https://www.comfortstyle.com.au/
+	Tạo cửa hàng
+	Xem danh sách cửa hàng 
+	Xem chi tiết thông tin cửa hàng
+	Chỉnh sửa thông tin cửa hàng 
+	Xóa cửa hàng
+	Thiết lập danh sách nhân viên 
+	Thiết lập danh sách khách hàng 
+	Thiết lập danh sách đơn hàng 
+	Thiết lập danh sách sản phẩm
+	Thiết lập đơn vị vận chuyển của cửa hàng
+	Ký nhận phiếu chuyển hàng, đặt hàng, bàn giao vận chuyển
+	Thống kê đơn hàng,
+	Thống kê danh sách phiếu xuất, nhập hàng
+	Thống kê chi phí bán hàng
+Thống kê lợi nhuận bán hàng 
+Thống kê doanh thu bán hàng 
+	Thống kê tồn kho 
+	6
+	Marketing
+	1. QUẢN LÝ VÀ SETUP SALE
+- Hiển thị và lọc theo các thuộc tính toàn bộ các sale đang diễn ra và những sale trong quá khứ 
+- Cho phép cài thời gian áp dụng của sale và kích hoạt lại sale đã hết hạn nếu muốn
+- Cho phép chọn 1 sp và cái đặt giá sale (hoặc tự nhập giá $$ hoặc nhập % và system tự tính giá sale dựa trên giá gốc và % sale mình nhập), cài đặt thời gian áp dụng sale, lý do sale, tick chọn các icons tương ứng để hiển thị lên website 
+- Cho phép chọn nhiều sp để tạo 1 package sale. 
+- Những sp hoặc package sale được setup sẽ hiển thị lên website tương ứng vào các catalogues tương ứng 
+- Lưu ý: giá sale nếu tính từ % sale trên giá gốc thì khi giá gốc thay đổi (do tự động đổi hoặc do người dùng điền giá mới) thì giá sale cũng sẽ thay đổi theo % tương ứng.
+
+
+2. Hiển thị danh sách sản phẩm với tất cả các biến thể, THÊM MÔ TẢ SẢN PHẨM cho từng sản phẩm, THÊM GIÁ SALE ĐẶC BIỆT (vd Prado bed Christmas sale $500) và THÊM TÌNH TRẠNG CHO TỪNG GIAI ĐOẠN GIÁ (ví dụ: stage 1 price: “New arrival”; Stage 2 price: “Over stock sale”; Stage 3 price: “Clerance sale”)
+ => Tự động xuất hiện trên các trang web và Amazon.
+Có nhiều trang web có thể tích hợp với phần mềm cùng một lúc và nội dung cập nhật mới có thể được áp dụng cho nhiều trang web cùng lúc.
+Vd: Có 2 website tích hợp với phần mềm quản lý này, người làm marketing khi tạo một giá sale mới hoặc mô tả mới của một sản phẩm có thể chọn áp dụng cho cả 2 website hay chỉ một website, đồng thời cũng có thể chọn áp dụng cho Amazon hay không.
+Lưu ý: Trạng thái của giá từng giai đoạn được thêm vào khi tạo THÊM SẢN PHẨM MỚI cùng với việc thêm giá mới trong phần quản lý sản phẩm của module sale. Tuy nhiên, trong mô-đun tiếp thị, người dùng cũng có thể THAY ĐỔI hoặc THÊM TÌNH TRẠNG cho các mức giá.
+3. Bảng báo cáo chi phí quảng cáo (bảng này sẽ được tự động liên kết với chi phí quảng cáo trên phần Báo cáo tài chính) Hàng tuần marketer sẽ điền vào bảng này với dữ liệu chi phí đã chi
+ Graphical user interface, application
+
+Description automatically generated 
+
+
+
+HIỂN THỊ TẤT CẢ SẢN PHẨM ĐƯỢC ÁP DỤNG GIÁ MỚI TỪ ĐẦU TUẦN ĐẾN THỜI ĐIỂM KIỂM TRA; KIỂM TRA GIÁ MỚI; giá hiện tại, giai đoạn hiện của giá tại và giá hiện trạng được áp dụng; DANH SÁCH NGẮN GỌN SẢN PHẨM so sánh doanh số, lợi nhuận, lượng hàng còn hàng,% hàng còn lại, số lượng hàng còn  lại  => Để phục vụ mục đích marketing
+	Lưu ý
+Web-app chỉ tối ưu cho sử dụng trên Laptop, Desktop.
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	STT
+	MODULE DELIVERY
+	1. 	Lộ trình giao hàng
+	Theo dõi tình trạng vận chuyển của đơn hàng (Prepare, shipping, done, comeback)
+	Theo dõi tuyến đường của đơn hàng, tính toán thời gian và quãng đường.
+	Hỗ trợ giao hàng nhiều điểm (Nhiều khách hàng) trên một tuyến đường.
+	Thể hiện bản đồ google map, hỗ trợ vẽ tuyến đường giao hàng và tối ưu quãng đường di chuyển.
+	Theo dõi thời gian vận chuyển của đơn hàng
+	2. 	Quản lý đối tác vận chuyển (khi doanh nghiệp liên kết với 1 đơn vị vận chuyển)
+	Tạo đối tác vận chuyển mới
+	Xem danh sách đối tác vận chuyển
+	Xem thông tin chi tiết 
+	Chỉnh sửa thông tin
+	Xóa đối tác
+	Xem danh sách đơn hàng
+	Xem danh sách công nợ 
+	Xem danh sách cửa hàng 
+	Công cụ lọc, tìm kiếm thông minh theo mã, tên, liên hệ, ngày tạo,..
+	Nhập file excel
+	Xuất file excel
+	3. 	Quản lý Đơn hàng Delivery
+	Tạo đơn hàng Delivery, tạo thêm delivery booking bằng việc add vào bảng ngày tháng (calendars), có hiển thị nhanh gợi ý bao nhiêu booking đã có trong ngày và có yêu cầu đặc biệt (vd lắp giường, bên lên tầng..) hay không. 
+Nếu tiếp tục nhấn vào ngày cụ thể thì sẽ hiển thị chi tiết các booking và đơn hàng, khách hàng, địa chỉ….và tóm lược các PINS của deliveries trên Google map 
+	Xem danh sách đơn hàng Delivery theo calendars, hiển thị tùy chọn theo hour, day, week or month view 
+	Xem danh sách Shipper
+	Cập nhật thông tin đơn hàng Delivery
+	Hủy đơn hàng Delivery
+	Xem chi tiết đơn hàng Delivery
+	Tìm kiếm đơn hàng theo mã đơn, lọc theo ngày, tháng, năm và theo đơn vị vận chuyển
+Lưu ý: Sau khi bán hàng và book delivery, system căn cứ thời điểm delivery được book để ghi giảm hàng còn lại có thể bán trong thời điểm tương ứng. 
+VD bán hôm nay nhưng 3 tháng nữa mới deliver, trong 3 tháng nữa sẽ có thêm hàng về kho, vậy system không ghi giảm số lượng hàng có thể bán ngày hôm nay mà ghi giảm số hàng có thể bán của đợt hàng về tiếp theo của thời điểm 3 tháng sau. 
+	Lọc đơn hàng theo trạng thái shipping
+	Nhập file excel đơn hàng Delivery
+	Xuất file excel đơn hàng Delivery; xuất file excel Daily delivery list (tham khảo mẫu đã gửi kèm)
+	
+
+
+
+ Table
+
+Description automatically generated 
+
+
+
+
+
+
+
+
+
+
+
+STT
+	MODULE WAREHOUSE
+	1. 	Quản lý Kho
+	Báo cáo về tổng lượng sản phẩm trong kho
+	Xem danh sách kho (Nếu có nhiều kho hoặc sử dụng kho dịch vụ)
+	Xem chi tiết thông tin kho
+	Thể hiện chi tiết các sản phẩm có trong kho
+	Điều chỉnh các sản phẩm trong kho
+	Thống kê số lượng hàng hoá đến kho theo thời gian tự chọn (Mặc định hôm nay) 
+	Thống kê sản phẩm được vận chuyển tới cửa hàng theo thời gian tự chọn (Mặc định hôm nay) (lưu ý: Cửa hàng cũng là  một kho cần theo dõi)
+	Thống kê số lượng sản phẩm được lấy ra khỏi kho (Mặc định hôm nay) 
+	Thống kê số lượng sản phẩm trả về kho theo thời gian tự chọn (Mặc định hôm nay) 
+	Bật/ Tắt hoạt động: Việc bật tắt hoạt động này có thể hiểu là không hoạt động nữa trên thực tế, phục vụ mục đích tính chi phí thuê kho.
+	Cấu hình kho: Cài đặt các thông số liên quan tới kho mà doanh nghiệp muốn cài đặt thông số mặc định
+	Công cụ lọc, tìm kiếm thông minh theo mã sản phẩm, tên sản phẩm, ngày tạo sản phẩm, mã phiếu xuất hàng, mã phiếu nhập hàng,...
+	2. 	Quản lý nhà cung cấp 
+
+
+
+
+
+
+
+
+
+
+
+
+Quản lý order hàng từ nhà cung cấp. Gọi tắt là MODULE STOCK ORDER
+(tham khảo sheet “stock order” trong file Excel gửi kèm)
+	Tạo mới nhà cung cấp
+	Xem danh sách các nhà cung cấp
+	Chỉnh sửa thông tin nhà cung cấp
+	Nhập xuất file excel các nhà cung cấp
+	Thiết lập cấu hình nhà cung cấp
+	Công cụ lọc, tìm kiếm thông minh
+	Thống kê tổng lượng vật liệu (Hoặc sản phẩm) được cung cấp theo thời gian tuỳ chọn, theo supplier và theo kho.
+* Quản lý hàng tồn kho và phiếu nhập (*) và hàng còn lại có thể bán theo số lượng và %; hiển thị tình trạng hàng còn lại (good volume, medium, low volume, almost empty, empty…). Cho phép lọc và gợi ý những hàng còn ít hoặc đã hết nên order. Tính toán thông minh theo thời gian cần thiết (vd 3 tháng) để có được hàng về từ lúc order để đưa ra gợi ý chính xác hơn khi nào cần order tiếp theo dựa trên lượng hàng tồn. 
+* Quản lý những Stock order đã tạo, thêm một phần các khoản mục chi tiết sản phẩm bao gồm: Số lượng của từng variations của sp, ngày dự kiến về, dimensions của sp, chi tiết đóng gói: số lượng box của một sp và dimensions và kg của từng box…
+* Công cụ tính giá bán:
++ Giá mua (giá nhập) của sp theo USD, AUD; thể tích CBM của từng sp, giá vận chuyển của cả công => giá vận chuyển theo đơn vị thể tích => giá vận chuyển đến kho của sp
+% lãi mục tiêu hoặc số lãi mục tiêu => giá bán và lãi dự kiến (nếu điền giá bán dự kiến trước thì sẽ hiển thị lãi dự kiến và % lãi.)
+* Cuối cùng có nút “APPLY”, nếu bấm vào thì giá tính toán sẽ được apply vào giá bán thật của sp 
+	3. 	Quản lý tồn kho (*)
+	Xem danh sách hàng tồn theo từng kho, từng cửa hàng
+	Báo động số lượng hàng tồn
+	Tùy chỉnh báo động
+	Điều chỉnh số lượng và giá bán sản phẩm
+	Thiết lập thuộc tính hàng tồn
+	Công cụ lọc, tìm kiếm thông minh
+	4. 	Quản lý phiếu nhập (*)
+	Tạo phiếu chuyển nhập hàng từ nhà cung cấp
+	Xem danh sách phiếu nhập hàng
+	Xem chi tiết phiếu
+	Chỉnh sửa phiếu
+	Hủy phiếu
+	Nhập file excel
+	Xuất file excel
+	Công cụ lọc, tìm kiếm thông minh
+	In bill kèm theo phiếu nhập, mẫu đơn giản, phục vụ việc kí nhận nhập hàng.
+	5. 	Quản lý phiếu xuất
+	Tạo phiếu chuyển hàng đến cửa hàng
+	Xem danh sách phiếu xuất hàng
+	Xem chi tiết phiếu
+	Chỉnh sửa phiếu
+	Hủy phiếu
+	Nhập xuất file excel phiếu chuyển hàng
+	Công cụ lọc, tìm kiếm thông minh theo mã, tên, variant
+	In bill kèm theo phiếu chuyển, mẫu đơn giản, phục vụ việc kí nhận chuyển hàng.
+	6. 	Cấu hình phiếu chuyển hàng
+	Thiết lập chuyển hàng theo định kỳ tới các Shop
+	Thống kê lượng hàng hoá nhập - xuất của kho dựa vào các phiếu chuyển hàng.
+	Truy vấn thông tin các phiếu chuyển hàng
+	Chỉnh sửa thông tin phiếu chuyển hàng (Chỉ chỉnh sửa khi chưa hoàn tất)
+	Ẩn phiếu chuyển khỏi hệ thống
+	
+
+STT
+	MODULE REPORTING & SYSTEM 
+
+
+Thiết lập các websites và trang Amazon sẽ tương tác với phần mềm
+Tự động backup dữ liệu định kỳ
+	1. 	Hóa đơn điện tử
+	In hóa đơn theo mẫu của doanh nghiệp, gửi hóa đơn qua mail khách hàng.
+  
+  
+
+
+
+  
+
+
+
+	2. 	Quản lý thông báo
+	Xem danh sách các thông báo theo cửa hàng và kho
+	Xem chi tiết
+	Chỉnh sửa thông báo
+	Thiết lập thời gian bắt đầu và kết thúc thông báo
+	Thiết lập đối tượng nhận thông báo
+	Thiết lập để thông báo được gửi đến email hoặc mobile app. Tùy từng cấp bậc của người dùng, thiết lập những thông báo ưu hiển thị pop up to ở giữa màn hình vào đầu mỗi ngày và có 2 option: Bỏ qua (tiếp tục hiển thị vào ngày hôm sau) hay Đã xử lý hoặc đã xác nhận. 
+	Công cụ lọc thông báo theo ngày, theo tình trạng đơn hàng, theo mã khách hàng, theo tình trạng hàng còn lại có thể bán, theo danh sách hàng (sản phẩm mới, hoặc stock mới về), theo giá cả (giá mới được áp dụng…)
+	3. 	Quản lý phân quyền
+	Tạo quyền mới
+	Xem danh sách quyền
+	Chỉnh sửa quyền
+	Xóa quyền
+	Phân quyền người dùng
+	4. 	Báo cáo tổng quan doanh thu, lợi nhuận, chi phí
+	Biểu đồ thống kê chi phí bán hàng, lọc theo từng loại chi phí, hỗ trợ thể hiện bằng biểu đồ
+	Biểu đồ thống kê doanh thu và lợi nhuận bán hàng 
+	Công cụ tìm kiếm, lọc sẽ được áp dụng dựa vào các thuộc tính của từng loại chi phí, doanh thu
+	Biểu đồ thống kê khách hàng theo cửa hàng
+	Biểu đồ thống kê sản phẩm bán được trong ngày/ tháng/ quý/ năm
+	Biểu đồ thể hiện lợi nhuận theo thời gian, theo cửa hàng, theo seller… theo sản phẩm để so sánh sp nào bán tốt nhất trong toàn bộ sp hay nhóm hoặc loại sp (nhóm đệm, nhóm sofa), theo vùng delivery (dựa vào vùng delivery để biết được doanh thu và lợi nhuận bán hàng theo các vùng so sánh với nhau…).
++ Tính toán hoa hồng được hưởng cho từng seller dựa vào % setup trên doanh thu bán hàng của seller đó theo và số tiếng làm việc. 
+Vd mỗi tiếng làm việc thì yêu cầu cơ bản là phải bán được $500 doanh thu, trên số đó thì sẽ hưởng 1% hoa hồng trên doanh thu bán hàng. 
+** Tính toán hoa hồng: 
+- Yêu cầu bán cơ bản mỗi giờ: $ XXX 
+-% hoa hồng sau khi yêu cầu cơ bản đạt:% X 
+- yêu cầu bán cơ bản = (giờ làm việc x yêu cầu bán cơ bản mỗi giờ) 
+- Hoa hồng được hưởng trước thuế = (Tổng doanh số bán của người bán hàng - yêu cầu bán cơ bản) x% hoa hồng được hưởng
+Lưu ý: Doanh số bán của người bán hàng phải là doanh số thực tế sau khi đã điều chỉnh do đổi, trả hay cancel hàng đã mua. (Xem thêm phần lưu ý khi tính toán lợi nhuận bán hàng bên dưới (***))
+
+
+	5. 	Cấu hình chi phí
+	Xem toàn bộ chi phí của doanh nghiệp
+	Xem chi tiết chi phí
+	Thiết lập giá chi phí. Tham khảo Sheet Reports trong file Excel gửi kèm
++ Chi phí “cố định” (gồm nhà xưởng, bảo hiểm, điện nước…, được khai báo 1 lần và được edit nếu cần theo từng tuần, số mới được edit sẽ chỉ áp dụng cho thời điểm đó và sau)
++ Chi phí lưu động (cần khai báo cho từng tuần, nếu không khai báo thì tự lấy số liệu từ tuần trước, gồm chi phí nhân công, bảo hiểm, quảng cáo…)
++ Tính toán các chỉ tiêu lợi nhuận cần thiết, hiển thị theo tuần hoặc tháng hay quãng thời gian được chọn  
++ Thiết lập thuộc tính chi phí có tính thuế hoặc không tính thuế, chi phí bằng tiền mặt (non-taxable) và chi phí có hóa đơn (tax-able). 
+Lưu ý: Một loại chi phí có thể có 2 phần, một phần có hóa đơn một phần tiền mặt. Ví dụ. Lương cho cleaner gồm $800 trả qua tài khoản (có hóa đơn, khoản này có tính superannuation 9.5%), và $200 trả tiền mặt (không hóa đơn và khoản này không tính superannuation 9.5%)
+** Mô-đun tiền lương / giờ làm việc: Sử dụng thẻ để tính giờ. Hoặc nhập số giờ làm việc và tiền lương mỗi giờ cho mỗi người. Cho phép thiết lập số tiền bằng tiền mặt (không phải chịu thuế, không có tiền hưu trí) và số tiền bằng cách thanh toán qua ngân hàng (chịu thuế, được sử dụng để tính tiền hưu trí) 
+- Tự động đưa các con số này vào phân hệ chi phí để tính toán. (Hưu bổng là 0,95% chỉ dựa trên tiền lương thanh toán được ghi nhận chịu thuế (ví dụ như thanh toán chuyển khoản ngân hàng); không áp dụng cho khoản thanh toán không ghi sổ (ví như lương tiền mặt) - hệ thống cũng sử dụng số này cùng với số doanh thu bán hàng để tính hoa hồng mà người bán có thể nhận được.
+	Công cụ lọc, tìm kiếm chi phí theo loại (Chi phí xuất nhập kho, phụ liệu (nếu có), in tem, đóng gói, chuyển hàng, chi phí nhân công, phí thuê kho, phí thuê cửa hàng, phí đối tác vận chuyển, chi phí nhập hàng từ nhà cung cấp).
+	
+
+Lưu ý khi tính toán lợi nhuận bán hàng (***), các trường hợp cần điều chỉnh lại lợi nhuận đã tính toán.
+Lợi nhuận được tính sau khi bán hàng chỉ là LỢI NHUẬN DỰ KIẾN chứ chưa phải Lợi nhuận thực tế. 
+Khi nào hàng được chuyển đi cho khách, dựa vào giá đến kho (giá mua) của đơn vị hàng thực tế được chuyển đi cho khách, hệ thống mới có thể tính chính xác lợi nhuận thực tế khi bán hàng đó và sẽ ghi đè hay điều chỉnh lợi nhuận dự kiến thành lợi nhuận thực tế cho chính xác. 
+Hàng luân chuyển theo nguyên tắc First in first out
+Ví dụ
+Ví dụ 1: hôm nay trong kho có 10 mặt hàng để bán và lợi nhuận từ việc bán là $ 4 cho mỗi mặt hàng được bán.
+Hôm nay (ngày 12/7/20) bên bán có bán 1 món hàng cho khách hàng X nhưng 3 tháng sau mới giao hàng. Khách hàng X đã thanh toán đầy đủ ngày hôm nay:
++ Lợi nhuận dự kiến ​​vào ngày 12/7/20 là $ 4
++ 3 tháng trôi qua, đến nay là ngày 10/12/20, 10 hàng trước có trong kho đã mang đi hết. Có 7 mặt hàng khác vừa được chuyển đến và mỗi mặt hàng có lợi nhuận $ 5 mỗi món. Và hôm nay ngày 20/12, tài xế đến lấy 1 mặt hàng trong số 7 mặt hàng vừa xuất kho để giao cho khách hàng X (mua từ 3 tháng trước) => lãi thực ngày 29/12 là hiện được điều chỉnh thành $ 5 vì mặt hàng đã Bán thực sự là mặt hàng mới đến và có lợi nhuận $ 5 cho mỗi mặt hàng đã bán.
+
+
+
+
+Ví dụ 2:
+Mặt hàng A có giá $ 1000; lợi nhuận $ 400 mỗi. Có 10 mặt hàng có sẵn.
+Ngày 20/12, khách hàng mua mặt hàng A và thanh toán 700 USD tiền đặt cọc để nhận hàng 2 tháng sau.
+=> Lợi nhuận kỳ vọng hôm nay: $ 400
+2 tháng sau 12/9/20. Còn 2 món trong kho và 7 món khác mới về. Lợi nhuận của mỗi mặt hàng mới là $ 350.
++ Khách hàng đến vào ngày 29/12 và thanh toán 300 $ phần còn lại và nhận hàng được giao.
+=> Dựa trên nguyên tắc First in first out, lợi nhuận của ngày 12/7/20 hiện vẫn là $ 400 (không phải $ 350) vì mặt hàng được giao vào ngày 12/7/20 là mặt hàng còn lại từ quá khứ chứ không phải mặt hàng thứ 7 mới. đến.
+
+
+Ví dụ 3: dựa trên giao dịch mua từ Ví dụ 2. nhưng vào ngày 9/12/20, khách hàng đến và yêu cầu hủy giao dịch mua và nhận lại 700 đô la
+=> Lợi nhuận thực tế của ngày 12/7/20 hiện được điều chỉnh thành $ 0 và HỆ THỐNG THÔNG BÁO CHO NGƯỜI DÙNG rằng lợi nhuận của ngày 12/7/20 được điều chỉnh thành $ 0.
+HỆ THỐNG CŨNG ĐIỀU CHỈNH BÁO CÁO CỦA NGƯỜI BÁN để điều chỉnh khoản hoa hồng cần trả cho người bán vào cuối mỗi kỳ.
+
+
+Ví dụ 4: dựa trên giao dịch mua từ Ví dụ 2. Nhưng vào ngày 9/12/20, khách hàng quay lại và yêu cầu đổi từ mặt hàng đó sang một mặt hàng khác với lợi nhuận 600 USD mỗi món. => lợi nhuận thực tế của 12/7/21 bây giờ được điều chỉnh thành 600 đô la thay vì 400 đô la. HỆ THỐNG THÔNG BÁO CHO NGƯỜI DÙNG rằng có sự điều chỉnh về lợi nhuận của ngày 21/12/21 từ $ 400 lên $ 600 do thay đổi mặt hàng đã bán từ A sang B.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+STT
+	OTHER SERVICE
+Có nhiều trang web có thể tích hợp với phần mềm cùng một lúc và nội dung cập nhật mới có thể được áp dụng cho nhiều trang web cùng lúc.
+Vd: Có 2 website tích hợp với phần mềm quản lý này, người làm marketing khi tạo một giá sale mới hoặc mô tả mới của một sản phẩm có thể chọn áp dụng cho cả 2 website hay chỉ một website, đồng thời cũng có thể chọn áp dụng cho Amazon hay không
+	1.
+
+
+	Liên kết Amazon Seller
+	Đồng bộ sản phẩm lên Shop bán hàng Amazon và nhận các hoá đơn khi có đơn hàng, cập nhật trạng thái đơn hàng khi bắt đầu vận chuyển. Tạo 1 ứng dụng đối tác lên thương mại điện tử Amazon và có thể truy xuất vào APIs của họ. 
+Cập nhật 2 chiều số lượng hàng còn lại để bán và status về giá giữa Amazon và phần mềm quản lý cũng như các thông tin khác (xem ví dụ dưới)
+	2.
+	Liên kết Website bán hàng Online
+	Làm việc với đơn vị Website bán hàng để đồng bộ dữ liệu. Các phương thức phổ biến thường sử dụng là Webhook để giao tiếp 2 Server với nhau.
+Cập nhật 2 chiều số lượng hàng còn lại để bán và status về giá giữa website và phần mềm quản lý cũng như các thông tin khác. 
+VD khi có 1 đơn vị hàng được bán trên website thì cần trừ đi số lượng hàng còn lại có thể bán trong phần mềm quản lý.
+Khi phần mềm quản lý tự động nhảy giá mới và status giá mới (vd price stage 3, clearance sale) thì cũng đồng thời hiển thị lên website tương tự.
+Ngược lại nếu admin website sửa trực tiếp từ website giá mới và tình trạng giá thì phần mềm sẽ cập nhật tương tự
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+STT
+	HRM
+Lưu ý: Những tính năng nào được quản lý trên mobile app sẽ được note trong phần mô tả của tính năng đó. Còn lại sẽ được quản lý trên web-app
+	1.
+
+
+	Chấm công
+	- Check in & Check out (Mobile-app)
+Phương thức xác thực check in/out của Nhân viên bằng 2 cách:
+- Bằng GPS định vị (điều kiện: cho phép điện thoại sử dụng chức năng vị trí, khi nhân viên nằm trong bán kinh 50m hệ thống cho phép điểm danh)
+- Bằng Wifi ở cửa hàng (khi máy bán hàng đăng nhập vào wifi) sẽ định danh được wifi đó, nhân viên tiến hành đăng nhập vào wifi ở cửa hàng để điểm danh. 
+Lưu ý: Có thể chụp ảnh xác nhận trước khi ra về (nếu doanh nghiệp cần).
+2 giải pháp check-in và check-out trên được sử dụng đồng thời để linh động cho nhân viên, tránh mất nhiều thời gian. 
+Mục đích: giải pháp này tự động hoá quy trình check-in, check-out, tích hợp báo cáo dễ dàng với hệ thống.
+- Leave: sick, annual, other
+Với những nhân viên không check-in và check-out những ngày làm việc (do ốm hay có sự cố riêng), những ô ngày này có màu đỏ để đánh dấu không đi làm, quản lí có thể thực hiện tích chọn những ô này để tính lương cho nhân viên như ngày bình thường.
+Ngày nhân viên nghỉ, cho phép admin tick vào là sick leave hoặc annual leave, nếu là 1 trong 2 option này nghĩa là vẫn tính lương cho full ngày đó như thông thường (admin có thể chọn tính lương bao nhiêu tiếng)
+
+
+- Bảng chấm công
+Bảng giờ công hiển thị giao diện format như Excel hiện tại doanh nghiệp đang sử dụng (hoặc tìm cách tối ưu giao diện lại để linh động), cho phép xem giờ công của 1 cửa hàng chỉ định theo ngày, trình bày 1 khoảng giờ làm việc, biết được mỗi giờ có bao nhiêu người làm, phát hiện khung giờ dư người hoặc thiếu người.
+Báo cáo chi tiết chấm công: Thể hiện lịch sử check in/ check out của từng nhân viên.
+
+
+- Cài đặt & khác
+Thời gian đi trễ cho phép và thời gian kết thúc ca sớm cho phép sẽ được quản lý cài đặt. 
+(Ví dụ: có thể đi trễ 10 phút và kết thúc ca sớm hơn 30 phút, mục đích để xác định giờ hợp lệ và tính công cho nhân viên part-time)
+
+
+	2.
+	Tính lương
+	Tính lương nhân viên:
+-        View/ edit giờ công, phụ cấp, lương cơ bản, thuế thu nhập, bảo hiểm
+-        Gửi yêu cầu phê duyệt bảng lương tới B.O.D
+Hệ thống tự tính số giờ làm việc và lương căn cứ vào mức lương theo tiếng đã cài đặt sẵn, tư động đưa vào mục tổng kết chi phí.
+Đưa ra tổng kết lương nhân viên theo từng người, giờ làm, ngày làm và số tổng vào cuối tuần hoặc theo quãng thời gian được tra cứu.
+Tính lương doanh số cho nhân viên sale, phần cài đặt kpi cho sale sẽ được cài đặt ở mục cài đặt & khác bên trên.
+	3
+	Tính lương Overtime
+	Việc tính lương overtime được tính theo phần trăm phụ trội do admin cài đặt trước
+Admin cài đặt trước % phù hợp cho Sale, Driver, Manager, Cleaners, Technician…
+Bình thường App sẽ mặc định tính theo % này tùy việc nhân viên được tính là Sale hay Driver hay …. nhưng admin có thể lựa chọn để thay đổi % cho từng mục, từng người cụ thể
+
+
+Basic rate $25 per hour
+
+
+Penalty rates and overtime
+- Overtime – Monday to Satuday – first 3 hours (extra 50%) $37.5 per hour
+- Ovetime – Monday to Saturaday – after 3 hours (extra 100%) $50 per hour
+- Saturday – ordinary hours (betweek 7am & 7pm) (extra 25%) $31.25 per hour
+- Sunday – ordinary hours (betweek 7am & 7pm) (extra 50%) $37.5 per hour
+- Public holiday – afternoon or night shift (extra 100%) $50 per hour
+- Public holiday (extra 150%) $62.5 per hour
+	4
+	Quản lý nhân viên
+	Tạo mới nhân viên
+Xem danh sách nhân viên theo cửa hàng
+Xem chi tiết thông tin
+Chỉnh sửa thông tin
+Xóa nhân viên 
+Xem lương nhân viên theo tuần, tháng, quý, năm.
+Xem chế độ bảo hiểm, trợ cấp theo tuần, tháng, quý, năm
+Điều chỉnh chế độ làm việc fulltime/ part-time
+Phân quyền nhân viên được dùng hoặc xem các hạng mục nào 
+Công cụ lọc, tìm kiếm nhân viên theo mã, tên, số điện thoại, địa chỉ, chế độ làm việc, cửa hàng…
+Cho phép thiết lập đơn giá tiền lương dựa trên số lượng giờ làm việc.
+Danh mục phụ cấp (Các mục ở phụ cấp do Admin tạo (bao gồm tên, mô tả , ghi chú, tiền phụ cấp )
+	5
+	Báo cáo
+	Tự động chuyển chi phí nhân sự sang báo cáo kết quả kinh doanh.
+Báo cáo tổng hợp 12 tháng chấm công cho tất cả nhân viên (Chọn năm để xem và có thể chọn chỉ tiêu để xem, ví dụ: Chọn xem theo tổng giờ công hoặc ngày nghỉ ốm…)
+Báo cáo tổng hợp 12 tháng tính lương cho tất cả nhân viên (Chọn năm để xem và chọn chỉ tiêu để xem)
+Báo cáo tổng hợp 12 tháng chấm công, tính lương của 1 nhân viên (Chọn năm để xem).
+Có thể xem báo cáo theo tuần, tháng, quý, năm
+	6
+	Phê duyệt
+	Gửi yêu cầu duyệt bảng lương
+Phê duyệt bảng lương trên web-app
+	
+
+2. CHI TIẾT CÁC TÍNH NĂNG CỦA WEBSITE
+PHÂN HỆ NGƯỜI DÙNG KHÁCH HÀNG
+WEBSITES CHẠY VỚI TỐC ĐỘ CAO NHẤT CÓ THỂ, TỐI ĐA TỐC ĐỘ DUYỆT WEB CHO NGƯỜI DÙNG ÚC VÀ TÂY ÚC
+Quản lý cùng lúc nhiều shop và nhiều warehouse. Khi cài đặt sẽ chọn warehouse nào liên kết với shop nào, từ đó tự động áp dụng mức giá khác nhau cho từng shop theo tình trạng hàng của warehouse liên kết với shop đó. Tương tự, trên website, khi người dùng vào website, sẽ được hỏi nhập mã vùng và sau đó tự động đưa người dùng về shop gần nhất, sau đó sẽ hiển thị giá của shop đó cho người dùng. Tham khảo thêm tại website này https://www.comfortstyle.com.au
+Lưu ý: Hệ thống cho phép bật hay tắt chức năng hiển thị đa giá này. Trường hợp không muốn dùng có thể cài đặt không áp dụng chức năng đa giá => Toàn bộ hệ thống chỉ hiển thị thống nhất 1 mức giá duy nhất, mức giá này tùy thuộc tổng lượng hàng tồn có thể bán của tổng các kho và shop, và tùy thuộc từng đợt sale …
+
+
+STT
+	NỘI DUNG
+	1
+	Authentication
+	- Đăng nhập
+- Đăng ký 
+- Quên mật khẩu
+- Xác thực qua email
+- Điểm, khách hàng thành viên ( gợi ý )
+- Liên kết tài khoản tới hệ thống doanh nghiệp.
+
+
+Lưu ý: Khách hàng vào website mua và thanh toán bình thường k cần đăng nhập hay đăng ký. Khi khách hàng check out sẽ hỏi khách có muốn đăng ký thành viên không thì sẽ có tích điểm và có VIP discount price. Khi khách dùng VIP profile để mua thì cần log in và sẽ có discount
+	2
+	Page home
+	- Sản phẩm trong menu được thiết kế bao gồm: Home, Shop, About, Blog, Review, Contact.
+Các trang dự kiến:
+* Home 
+* Shop (Most purchased, Hottest Sales, Living Room, Dining Room, Bedroom, Packages & Sales)
+* Shop pop up 
+* Product 
+* Product pop up
+* About 
+* Gallery 
+* Review 
+* Blog 
+* Contact 
+(Xem design ở link gửi kèm)
+- Trang Home được thiết kế bao gồm 4 tabs catalogues:
+- Living Room = Packages &Sales  + Sofabed + Sofas + Recliners + L Shaped + U shaped + Chairs + Ottomans + TV Units + Coffee Tables
+- Dining Room = Packages &Sales  + Dining Tables + Extension Dining tables + Dining Chairs + Buffet/Sideboard + Display Cabinets + Bar Stools 
+- Bedroom = Packages & Sales + Beds + Sofa Beds + Mattresses + Bedsides + Dressing Tables + Tallboy/Chest + 
+- Outdoor and Others: Packages & Sales + Outdoor + Others
+Mỗi catalogue có sub-catalogue dạng dropdown hiển thị sản phẩm mới nhất vừa đăng.
+- Thanh catalogue của trang home hiển thị xuyên suốt trong quá trình người dùng thao tác cuộn lên xuống. (Bản mobile: Chỉ hiện icon menu; Bản desktop: Hiện menu xuyên suốt nhưng bỏ phần logo)
+ Graphical user interface, application, website
+
+Description automatically generated 
+ Graphical user interface, website
+
+Description automatically generated 
+
+- Categories linh hoạt, hỗ trợ thiết kế đa dạng, kiểu dáng như mô tả ảnh.
+- Products bố trí, trưng bày hấp dẫn, hiệu ứng linh hoạt như trong ảnh mẫu.
+- Share hình ảnh sản phẩm đã mua lên mạng xã hội.
+- Review link trực tiếp Google và Facebook, review được đăng lên sau khi admin duyệt, được phép bỏ đi những review không tốt.
+
+
+- Hỗ trợ upload ảnh sau khi review sản phẩm được admin duyệt.
+- Bộ lọc sản phẩm (phần này khách hàng sẽ giải thích rõ hơn).
+- Xem thêm nhiều sản phẩm.
+- Show những sản phẩm khách hàng vừa mới xem.
+- Show những sản phẩm có liên quan (ví dụ giường thì show tallboy và bedside tables. Khi setup 1 sản phẩm sẽ có tick chọn những sản phẩm có liên quan)
+- Show những sản phẩm cùng chủng loại và có cùng khoảng giá 
+- Thiết kế đáp ứng dạng quick view đối với mỗi sản phẩm như hình ảnh mẫu.
+- Cho phép khách hàng upload ảnh và video, review sản phẩm. Review này được kiểm duyệt bởi Admin trước khi xuất hiện trên trang.
+- Thêm sản phẩm yêu thích vào giỏ hàng.
+- Tìm kiếm thông minh và tốc độ nhanh.
+- Gợi ý đúng sản phẩm mong muốn, nổi bật đáp ứng nhu cầu người dùng.
+- Hỗ trợ gợi ý những chức năng hot trend và phổ biến được các sàn thương mại chuyên dùng (gợi ý => ok please apply)
+- Thiết kế banner đẹp mắt, chuyên nghiệp kết hợp hiệu ứng; content trên banner được phép thay đổi tuỳ vào admin.
+- Liên kết đến mạng xã hội bao gồm: Facebook, Instagram, LinkedIn.
+- Liên hệ qua số điện thoại, email.
+- Chat liên hệ, kết nối đến hệ thống Seller chăm sóc khách hàng (gợi ý)
+
+
+- Thiết kế responsive, hỗ trợ giao diện linh hoạt cả website và mobile app.
+
+
+- Thiết kế giao diện đẹp mắt, chuyên nghiệp thân thiện người dùng.
+
+
+- Hỗ trợ đội ngũ thiết kế bản vẽ hoàn chỉnh trước khi triển khai.
+	
+
+3
+	
+
+
+
+
+
+
+
+
+
+
+
+Page Shop
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Page Single Product
+	- Tìm kiếm sản phẩm thông minh và tốc độ nhanh.
+- Categories linh hoạt, hỗ trợ thiết kế đa dạng, kiểu dáng.
+- Products bố trí, trưng bày hấp dẫn, hiệu ứng linh hoạt.
+- Bộ lọc sản phẩm (phần này khách sẽ giải thích rõ hơn).
+Mỗi variation của một sp sẽ được coi như một sản phẩm riêng lẻ và được hiển thì riêng lẻ trên phần shop chung. Tuy nhiên chúng vẫn có liên hệ với nhau từ 1 sp mẹ.
+Bộ lọc chỉ hiển thị những thuộc tính liên quan đến loại sản phẩm trên trang đang hiển thị, không hiển thị tất cả các thuộc tính thậm chí của loại sp khác. 
+- Hỗ trợ filter search theo nhiều loại.
+- Thêm sản phẩm yêu thích vào giỏ hàng.
+- Show những sản phẩm khách hàng vừa mới xem.
+- Đầy đủ tính năng của một sản phẩm (chi tiết sản phẩm, giỏ hàng, thanh toán sản phẩm).
+- Xem thêm nhiều sản phẩm.
+- Thiết kế đáp ứng dạng quick view đối với mỗi sản phẩm như hình ảnh mẫu.
+- Hỗ trợ chức năng gợi ý thông minh, luôn sắp xếp những sản phẩm phổ biến, nhiều người quan tâm lên đầu trang (best match – default option)
+- Cho phép thay đổi sắp xếp hiển thị theo tùy chọn của khách (Hiển thị sản phẩm “best match” (đây là default option), Hiển thị sản phẩm từ giá cao đến thấp, từ giá thấp đến cao, xem sản phẩm phố biến nhất trước tiên)
+- Cho phép khách hàng upload ảnh và video, review sản phẩm. Review này được kiểm duyệt bởi Admin trước khi xuất hiện trên trang.
+- Gợi ý đúng sản phẩm mong muốn, nổi bật đáp ứng nhu cầu người dùng. 
+
+
+* Hiển thị từng sp riêng lẻ. Không chỉ hiển thị ảnh sản phẩm mà có thể hiện thị quick video của sản phẩm. Xem ví dụ tại link này: 
+https://www.ikea.com/au/en/p/markus-office-chair-glose-black-50137208/
+* Integrate với website của cty vận chuyển để tự động tính giá vận chuyển cho khách. Cụ thể như sau (có thể cài đặt để thay đổi được giá vận chuyển này) 
++ 3km và Dưới 3km: $25
++ trên 3km và Dưới 10km: $35
++ 10km-20km: $45
++ 21km – 30km: $55
++ 31km – 40km: $65
++ 41km – 50km: $75
++ 51km – 60km: $90
++ 61 km- 70km: $120
++ 71km-80km: $140
++ 81km – 149km: $190
++ 150km – 200km: $250 
++ Trên 200km: Integrate với website công ty vận chuyển gồm TNT và Startrack, dựa vào thông tin số lượng hộp, kích cỡ, cần nặng của hộp để đưa ra giá vận chuyển.
+
+
+* Cho phép chọn các variation khác của sản phẩm đó 
+Vd: tại page SHOP, khách hàng chọn giường Prado double mầu black.
+Khi click vào sp Prado double, khách sẽ vào page PRODUCT.
+Tại đây, khách có thể chọn các variations khác liên quan đến sp mẹ là Prado. Các variation này bao gồm, kích cỡ (Single, King Sinlge, Double, Queen, King); Mầu sắc (white, black, grey); Chất liệu (Leather look, fabric)
+- Show những sản phẩm có liên quan (ví dụ giường thì show tallboy và bedside tables. Khi setup 1 sản phẩm sẽ có tick chọn những sản phẩm có liên quan)
+- Show những sản phẩm khách hàng vừa mới xem.
+- Show những sản phẩm cùng chủng loại và có cùng khoảng giá 
+- THANH TOÁN: Thẻ Visa, Mastercard, American Express, Paypal
+	4
+	Page About
+	- Giới thiệu về hệ thống bán hàng
+- Giới thiệu đội ngũ
+- Liên hệ
+	5
+	Page Blogs
+	- Giao diện các bài viết.
+-  Thư viện hình ảnh.
+	6
+	Page Review
+	- Giao diện các bài viết đánh giá của khách hàng.
+	7
+	Page Contact
+	- Thông tin liên hệ
+- Hỗ trợ.
+	8
+	Suggest For Business
+	- 1 Popup chat online trên Website, có thể liên kết tới messenger Facebook hoặc Admin muốn liên kết tới app nhân viên trong hệ thống. 
+	9
+	Template Design
+	- Doanh nghiệp được review trước bản thiết kế của Website, khi đồng ý bản thiết kế bên kỹ thuật cam kết tiến hành giống mẫu 100% cùng các chức năng đã liệt kê.
+	Các page phụ khác nếu cần có để đảm bảo hoàn thiện website và các chức năng của webside
+PHÂN HỆ QUẢN LÝ (ADMIN USER)
+Lưu ý: Phần này trình bày các chứng năng của phần hệ quản lý (admin section) của website nhưng bên kỹ thuật kết hợp với phần mềm quản lý đang xây dựng để phát triển sao cho tiết kiệm các công đoạn và tránh trùng lặp các chức năng và modules.
+Ưu tiên đưa các chức năng quản lý (admin) về phần mềm quản lý đang cùng phát triển.
+STT
+	Chức năng
+	I. Phân hệ Xác thực, cấp quyền người dùng và Quản trị hệ thống
+	1
+	Service Xác thực thông tin người sử dụng
+	2
+	Service Cấp quyền. Các quyền người sử dụng bao gồm :
++ Administrator – Quản trị hệ thống
++ Customer – Khách hàng
++ Salespersons – Người bán hàng
++ Management Store 
+	3
+	Quản trị người dùng
+	4
+	Ghi log hệ thống
+	5
+	Nhật ký theo dõi hệ thống
+	II. Phân hệ Quản lý thông tin Sản phẩm
+	1. 	Quản lý  các thuộc tính và đặc tính của sản phẩm. Khi tạo mới sản phẩm, có thể tạo thêm danh mục sản phẩm và danh mục con mới và thêm variation của sản phẩm dễ dàng và variation mới sẽ kế thừa các thuộc tính có sẵn của sp mẹ, tránh việc phải điền lại quá nhiều.
+Mỗi thuộc tính của sp sẽ kế thừa thuộc tính chung của sp đó nhưng đều được coi là một sp riêng lẻ, có thể thay đổi thuộc tính cũng như có ảnh ảnh riêng.
+Danh mục sản phẩm:
+Có tùy chọn để chọn danh mục trong trang sản phẩm khi chúng ta tạo mới sp hoặc bất kỳ lúc nào. 
+• Trong phần danh mục, có tùy chọn để tạo các danh mục và danh mục con mới 
+• Có tùy chọn để làm cho các danh mục / danh mục con này hoạt động hoặc không hoạt động. 
+• Mỗi danh mục con phải có tùy chọn sử dụng cài đặt danh mục mẹ hoặc chỉnh sửa cài đặt riêng của nó. 
+• Có tùy chọn nhập hàng loạt sản phẩm vào các danh mục hoặc danh mục con. Hiển thị các sản phẩm ở định dạng danh sách có thể tìm kiếm được và có thể dễ dàng chọn hoặc bỏ chọn các sản phẩm nằm trong danh mục / danh mục con
+	2. 	Thêm mới /Sửa/Xóa/ Hiển thị thông tin danh sách và thông tin chi tiết sản phẩm. Khi chỉnh sửa thuộc tính của sp kể cả ảnh, cần có tùy chọn chỉnh sửa một hoặc tất cả hoặc một vài variation của sp đó cùng một lúc. 
+	3. 	Loại sản phẩm 
+	4. 	Nhận xét (recommend product) sản phẩm
+	5. 	Các liên kết sản phẩm (Associated products)
++ Cho phép tick chọn hoặc tạo mới các sản phẩm có liên quan. 
+Vd giường Prado thì có thể tick chọn Prado bed side, Prade tallboy… vào nhóm sp có liên quan
++ Nhà cung cấp
++ Kho hàng
+	6. 	Quản lý ảnh gắn với sản phẩm. Có thể tải trực tiếp ảnh cho từng variation của sp từ máy tính hoặc thư viện ảnh của website
+	7. 	Quản lý giá sản phẩm.
+Có thể tự động lấy thông tin về trạng thái giá của sp từ phần mềm quản lý hoặc có thể thay đổi luôn trong phần admin của website. Nếu một trong hai là admin của website hoặc phần mềm quản lý thay đổi trạng thái thì phần kia cũng thay đổi theo.
+Có một loạt các tiêu đề trạng thái và một loại icons có thể chọn khi tạo sản phẩm và giá sản phẩm. Phần này có thể làm trong phần mềm quản lý hoặc cũng có thể làm trong website.
+	8. 	Tìm kiếm thông tin sản phẩm
+	III. Phân hệ Quản lý bán hàng
+	1
+	Quản lý đơn hàng
+	2. 
+	Chuyển hàng hóa
+	2.1
+	Thông tin chuyển hàng hóa
+	2.2 
+	Chuyển hàng gắn với đơn hàng
+	2.3
+	Thêm mới/Chỉnh sửa/Xóa/ Hiển thị danh sách gắn với chuyển hàng
+	2.4
+	Nhận xét khách hàng với chuyển hàng
+	3
+	Vị trí địa lý gắn với Đơn hàng (Dùng google map)
+	4
+	Tài liệu
+	4.1
+	Mẫu tài liệu đơn hàng
+	4.2
+	Mẫu tài liệu với chuyển hàng
+	5
+	Tìm kiếm thông tin 
+	5.1
+	Tìm kiếm gắn với đơn hàng
+	5.2
+	Tìm kiếm gắn với chuyển hàng
+	5.3
+	Tìm kiếm gắn với sản phẩm
+	IV. Phân hệ Quản lý khách hàng
+	1
+	Thông tin khách hàng
+	2
+	Thông tin danh mục khách hàng
+	2.1
+	Loại khách hàng
+	2.2
+	Mức độ khách hàng …
+	3
+	Thêm mới/Chỉnh sửa/Xóa và hiển thị danh sách khách hàng
+	4
+	Các đặc tính khách hàng
+	5. 
+	Nhắc nhở khách hàng
+	V. Marketing
+	1
+	Quản lý giảm giá
+	2
+	Gửi thư và thông báo khách hàng
+	3
+4
+	Tiếp nhận phản hồi khách hàng về marketing sản phẩm
+QUẢN LÝ VÀ SETUP SALE
+- Hiển thị và lọc theo các thuộc tính toàn bộ các sale đang diễn ra và những sale trong quá khứ 
+- Cho phép cài thời gian áp dụng của sale và kích hoạt lại sale đã hết hạn nếu muốn
+- Cho phép chọn 1 sp và cái đặt giá sale (hoặc tự nhập giá $$ hoặc nhập % và system tự tính giá sale dựa trên giá gốc và % sale mình nhập), cài đặt thời gian áp dụng sale, lý do sale, tick chọn các icons tương ứng để hiển thị lên website 
+- Cho phép chọn nhiều sp để tạo 1 package sale. 
+- Những sp hoặc package sale được setup sẽ hiển thị lên website tương ứng vào các catalogues tương ứng 
+- Lưu ý: giá sale nếu tính từ % sale trên giá gốc thì khi giá gốc thay đổi (do tự động đổi hoặc do người dùng điền giá mới) thì giá sale cũng sẽ thay đổi theo % tương ứng.
+
+
+	VI. Báo cáo
+	1
+	Báo cáo liên quan quản trị
+	2
+	Báo cáo liên quan tới khách hàng
+	3
+	Báo cáo sản phẩm
+	4.
+	Báo cáo bán hàng
+	VII. Quản trị nội dung
+	1.
+	Quản lý chủ đề bài viết
+	2.
+	Quản lý bài viết
+	3. 
+	Tìm kiếm thông tin liên quan tới bài viết
+	4. 
+	Thông báo liên quan tới bài viết
+	VIII. Quản trị nhà cung cấp
+	1
+	Thêm mới/Cập nhật/Chỉnh sửa/Xóa và tìm kiếm thông tin
+	2
+	Tìm kiếm thông tin
+	3
+	Hiển thị thông tin chi tiết
+	XIX
+	Chat
+	XX
+	Thanh toán
+	1
+	Giỏ hàng
+	2.
+	Thanh toán
+	3. 
+	Thông tin thuế
+	XXI
+	Cấu hình hệ thống
+	XXII
+	Trang chủ và các trang cấp 1 và các trang cấp 2
+	XXIII
+	Xử lý hiển thị thông tin hỗ trợ SEO
+	
+
+3. QUẢN LÝ SHIPPER (MOBILE-APP)
++ Tính năng đăng nhập, bấm bắt đầu vận chuyển và đã giao hàng.
+Khi bắt đầu vận chuyển, gửi tin nhắn đến khách hàng thông báo đã bắt đầu giao hàng và dự tính sẽ đến nơi trong vòng bao nhiêu phút (dựa vào thông tin từ Google map)
+Phía kỹ thuật hỗ trợ miễn phí:Tích hợp, kết nối dịch vụ gửi tin nhắn của nhà cung cấp dịch vụ gửi tin nhắn vào hệ thống đang thiết kế.
++ Trước khi delivery, hệ thống tự động nhắn tin cho khách hàng thông báo sẽ về việc giao hàng. Tham khảo lưu đồ sau.
+  
+
+Lưu ý: Hiện tại Dev chỉ nghiên cứu để áp dụng với Australia, tương lai nếu có mở rộng thì sẽ khảo sát và báo lại.
++ Cho phép xem trước và in danh sách delivery của từng ngày khác nhau.
++ Tính năng xem các đơn hàng cần giao của 1 shipper, xử lý thao tác chọn và tính toán thời gian vận chuyển.
++ Hiển thị số tiền phải thu cùng các yêu cầu đặc biệt cho đơn hàng 
++ Chụp hình đối chứng và cập nhật đối soát khi giao hàng.
++ Hiển thị bản đồ khi vận chuyển, xem được bản đồ khi chạy xe tải (như google maps)
++ Cập nhật vị trí của shipper lên hệ thống để Admin quản trị được vị trí
+
+
+
+
+4. HỆ THỐNG CHAT
+Hệ thống chat dùng riêng, không phụ thuộc vào facebook, bên kỹ thuật thiết kế 1 plugin chat mang tính thương hiệu ở các Website seller và có thể nhắn tin real-time. Bên chăm sóc khách hàng có thể rep tin nhắn khách tại trang web Admin. Icon hình người nói chuyện.
+
+
+
+
+
+
+
+
+
+
+
+
+        
+ | 32
